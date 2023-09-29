@@ -1,5 +1,30 @@
-/* 
-    Asegurarse que los usuarios ingresen correctamente los datos que se solicitan.
-    Inicio de sesión por tipo de usuario.
- */
+{
+    "datosUsuario": [
+        {
+            "nombre": "Carlos",
+            "apellido": "Flores",
+            "telefono": "238 178 8998",
+            "correo": "ejemplo.correo@gmail.com",
+            "contraseña": "********"
+        }    
+    
+    ],
+    "contacto": [
+        {
+            "nombre": "Andres",
+            "apellido": "Flores",
+            "telefono": "238 178 8998"
+        }    
+    ],
+    
+    "ubicaciones": [
+        {
+          "nombre": "usuario",
+          "latitud": 40.7128,
+          "longitud": -74.0060
+        }
+    
+      ]
+      
+}
 
