@@ -1,18 +1,4 @@
-import { StyleSheet } from "react-native";
-
-/*export default StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    title: {
-        fontSize: 36
-    },
-    inputs: {
-        with: "100%"
-    }
-}) */
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {

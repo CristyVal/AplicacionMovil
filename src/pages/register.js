@@ -1,4 +1,7 @@
 import { StyleSheet, SafeAreaView, View, Image, Text, TextInput, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from 'react';
+import * as ImagePicker from 'expo-image-picker';
+import {styles} from '../styles/register.js'
 
 export default function Register(props) {
   const { navigation } = props;
@@ -8,6 +11,23 @@ export default function Register(props) {
     navigation.navigate("Login");
   }
 
+  const openImagePicker = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  
+    if (permissionResult.granted === false) {
+      alert('Permiso para acceder a la galería denegado');
+      return;
+    }
+  
+    const result = await ImagePicker.launchImageLibraryAsync();
+    if (!result.cancelled) {
+      // La imagen fue seleccionada con éxito
+      console.log(result);
+      setSelectedImage(result.uri);
+    }
+  };
+
+  const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,6 +83,15 @@ export default function Register(props) {
                             <Text style={styles.buttonText}>Siguiente</Text>
                         </TouchableOpacity>
                     </View>
+
+                    <View>
+                        {selectedImage && (
+                          <Image source={{ uri: selectedImage }} style={{ width: 200, height: 200 }} />)}
+                          <TouchableOpacity style={styles.buttonImage}>
+                              <Text onPress={openImagePicker}>Selecciona una imagen de tu galería</Text>
+                          </TouchableOpacity>
+
+                      </View>
                 </View> 
 
                     <View style={[styles.spacing, styles.row]}>
@@ -71,69 +100,9 @@ export default function Register(props) {
                             <Text style={styles.signUp}>Inicia sesión</Text>
                         </TouchableOpacity>
                     </View>
-             
       </View>
     </SafeAreaView>
   );
 }
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    Color: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  
-  firstSection: {
-    flex: 1,
-    backgroundColor: "white",
-    width: "100%",
-    borderTopRightRadius: 25,
-    borderTopLeftRadius: 25,
-    padding: 20,
-    justifyContent: "space-between",
-  },
-  title: {
-    fontSize: 38,
-    color: "black",
-    fontWeight: "bold",
-    marginTop: 25,
-    
-    
-  },
-  formTitle: {
-    fontSize: 14,
-    color: "#78828c",
-    marginBottom: 20,
-  },
-  label: {
-    color: "#78828c",
-    
-  },
-  textInput: {
-    color: "#000",
-    padding: 8,
-  },
-  button: {
-    backgroundColor: "pink",
-    padding: 15,
-    borderRadius: 30,
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "bold",
-  },
-  spacing: {
-    marginTop: 30,
-  },
-  row: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  signUp: {
-    color: "pink",
-    paddingLeft: 5,
-  }
-})
+
