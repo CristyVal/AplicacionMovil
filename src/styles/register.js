@@ -44,13 +44,6 @@ export const styles = StyleSheet.create({
       borderRadius: 30,
       alignItems: "center",
     },
-    buttonImage: {
-      backgroundColor: "#78828c",
-      padding: 15,
-      borderRadius: 30,
-      alignItems: "center",
-      marginTop: 20,
-    },
     buttonText: {
       color: "white",
       fontWeight: "bold",
